@@ -1,0 +1,32 @@
+created:
+    - app/Http/Controllers/ParcelaController.php
+    - app/Http/Controllers/SortaController.php
+    - app/Http/Controllers/PlanBerbeController.php
+    - app/Http/Controllers/UnosBerbeController.php
+    - database/factories/UserFactory.php
+    - database/factories/ParcelaFactory.php
+    - database/factories/SortaFactory.php
+    - database/factories/PlanBerbeFactory.php
+    - database/factories/UnosBerbeFactory.php
+    - database/migrations/2025_12_28_182122_create_users_table.php
+    - database/migrations/2025_12_28_182123_create_parcelas_table.php
+    - database/migrations/2025_12_28_182124_create_sortas_table.php
+    - database/migrations/2025_12_28_182125_create_plan_berbes_table.php
+    - database/migrations/2025_12_28_182126_create_unos_berbes_table.php
+    - app/Models/User.php
+    - app/Models/Parcela.php
+    - app/Models/Sorta.php
+    - app/Models/PlanBerbe.php
+    - app/Models/UnosBerbe.php
+    - tests/Feature/Http/Controllers/ParcelaControllerTest.php
+    - tests/Feature/Http/Controllers/SortaControllerTest.php
+    - tests/Feature/Http/Controllers/PlanBerbeControllerTest.php
+    - tests/Feature/Http/Controllers/UnosBerbeControllerTest.php
+updated:
+    - routes/web.php
+models:
+    User: { role: string }
+    Parcela: { naziv: string, lokacija: string, hasMany: PlanBerbe }
+    Sorta: { naziv: string, opis: 'text nullable', hasMany: PlanBerbe }
+    PlanBerbe: { datum: date, planirana_kolicina_kg: 'decimal:8,2', status: string, parcela_id: id, sorta_id: id, user_id: id, hasMany: UnosBerbe, belongsTo: 'Parcela Sorta User' }
+    UnosBerbe: { uneta_kolicina_kg: 'decimal:8,2', plan_berbe_id: id, user_id: id, belongsTo: 'PlanBerbe User' }

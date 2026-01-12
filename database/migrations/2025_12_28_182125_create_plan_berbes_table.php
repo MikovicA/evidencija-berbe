@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('plan_berbes', function (Blueprint $table) {
+            $table->id();
+            $table->date('datum');
+            $table->decimal('planirana_kolicina_kg', 8, 2);
+            $table->string('status');
+            $table->foreignId('parcela_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('sorta_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('plan_berbes');
+    }
+};
