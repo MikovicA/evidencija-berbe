@@ -1,4 +1,6 @@
 <?php
+// Model for harvest planning
+
 
 namespace App\Models;
 
