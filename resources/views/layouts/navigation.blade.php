@@ -15,6 +15,19 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if(auth()->user()->role === 'gazda')
+    <x-nav-link :href="route('plan-berbes.index')" 
+                :active="request()->routeIs('plan-berbes.*')">
+        {{ __('Plan berbe') }}
+    </x-nav-link>
+@endif
+
+@if(auth()->user()->role === 'radnik')
+    <x-nav-link :href="route('unos-berbes.index')" 
+                :active="request()->routeIs('unos-berbes.*')">
+        {{ __('Unos berbe') }}
+    </x-nav-link>
+@endif
                 </div>
             </div>
 
