@@ -16,7 +16,7 @@
             background: white;
             padding: 40px;
             border-radius: 8px;
-            text-align: center;
+            text-align: center; 
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         h1 {
