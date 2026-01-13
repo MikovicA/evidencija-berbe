@@ -7,7 +7,7 @@
         <h1 class="text-2xl font-bold">Moji unosi berbe</h1>
 
         <a href="{{ route('unos-berbes.create') }}"
-           class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+           class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-green-700">
             + Novi unos berbe
         </a>
     </div>
@@ -36,7 +36,7 @@
 
                 <td class="border px-2 py-1">
                     <div class="w-full bg-gray-200 rounded h-4 overflow-hidden">
-                        <div class="h-4 bg-green-600 text-xs text-white text-center"
+                        <div class="h-4 bg-purple-500 text-xs text-white text-center"
                             style="width: {{ $procenat }}%">
                             {{ $procenat }}%
                         </div>

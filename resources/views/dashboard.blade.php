@@ -4,13 +4,14 @@
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
     <div class="text-center">
 
-        <h2 class="mb-4">Dashboard</h2>
+        
 
         @if(auth()->user()->role === 'gazda')
             <h4 class="mb-4">Dobro došao, Gazda</h4>
 
             <a href="{{ route('plan-berbes.index') }}"
                class="btn btn-lg btn-success px-5 py-3 shadow">
+               
                 📅 Planiranje i upravljanje berbom
             </a>
 

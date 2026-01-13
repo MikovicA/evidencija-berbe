@@ -7,7 +7,7 @@
         <h1 class="text-2xl font-bold">Planovi berbe</h1>
 
         <a href="{{ route('plan-berbes.create') }}"
-           class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+           class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-green-700">
             + Kreiraj novi plan berbe
         </a>
     </div>
