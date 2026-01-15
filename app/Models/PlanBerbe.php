@@ -1,6 +1,6 @@
 <?php
-// Model for harvest planning
 
+// Model for harvest planning
 
 namespace App\Models;
 
@@ -28,7 +28,7 @@ class PlanBerbe extends Model
 
     public function unosi()
     {
-    return $this->hasMany(UnosBerbe::class, 'plan_berbe_id');
+        return $this->hasMany(UnosBerbe::class, 'plan_berbe_id');
     }
 
     public function parcela(): BelongsTo

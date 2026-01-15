@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PlanBerbe;
 use App\Models\Parcela;
+use App\Models\PlanBerbe;
 use App\Models\Sorta;
 use Illuminate\Http\Request;
 
@@ -12,9 +12,10 @@ class PlanBerbeController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if (!auth()->check() || auth()->user()->role !== 'gazda') {
+            if (! auth()->check() || auth()->user()->role !== 'gazda') {
                 abort(403);
             }
+
             return $next($request);
         });
     }
@@ -22,6 +23,7 @@ class PlanBerbeController extends Controller
     public function index()
     {
         $planBerbes = PlanBerbe::with(['parcela', 'sorta'])->latest()->get();
+
         return view('plan_berbes.index', compact('planBerbes'));
     }
 
@@ -80,26 +82,26 @@ class PlanBerbeController extends Controller
                 ->with('success', 'Status plana je ažuriran.');
         }
 
-    // Ako je planirano – dozvoljene su sve izmjene
-    $request->validate([
-        'datum' => 'required|date',
-        'parcela_id' => 'required|exists:parcelas,id',
-        'sorta_id' => 'required|exists:sortas,id',
-        'planirana_kolicina_kg' => 'required|numeric|min:0.01',
-        'status' => 'required|in:planirano,u_toku,zavrseno',
-    ]);
+        // Ako je planirano – dozvoljene su sve izmjene
+        $request->validate([
+            'datum' => 'required|date',
+            'parcela_id' => 'required|exists:parcelas,id',
+            'sorta_id' => 'required|exists:sortas,id',
+            'planirana_kolicina_kg' => 'required|numeric|min:0.01',
+            'status' => 'required|in:planirano,u_toku,zavrseno',
+        ]);
 
-    $planBerbe->update($request->all());
+        $planBerbe->update($request->all());
 
-    return redirect()
-        ->route('plan-berbes.index')
-        ->with('success', 'Plan berbe je uspešno izmenjen.');
-}
-
+        return redirect()
+            ->route('plan-berbes.index')
+            ->with('success', 'Plan berbe je uspešno izmenjen.');
+    }
 
     public function destroy(PlanBerbe $planBerbe)
     {
         $planBerbe->delete();
+
         return back()->with('success', 'Plan obrisan.');
     }
 }

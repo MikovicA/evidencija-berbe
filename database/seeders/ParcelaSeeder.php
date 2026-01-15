@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Parcela;
+use Illuminate\Database\Seeder;
 
 class ParcelaSeeder extends Seeder
 {

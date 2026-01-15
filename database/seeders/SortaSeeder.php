@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Sorta;
+use Illuminate\Database\Seeder;
 
 class SortaSeeder extends Seeder
 {

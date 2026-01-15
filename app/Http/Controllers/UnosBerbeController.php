@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UnosBerbe;
 use App\Models\PlanBerbe;
+use App\Models\UnosBerbe;
 use Illuminate\Http\Request;
 
 class UnosBerbeController extends Controller
@@ -12,9 +12,10 @@ class UnosBerbeController extends Controller
     {
         // SAMO RADNIK
         $this->middleware(function ($request, $next) {
-            if (!auth()->check() || auth()->user()->role !== 'radnik') {
+            if (! auth()->check() || auth()->user()->role !== 'radnik') {
                 abort(403);
             }
+
             return $next($request);
         });
     }
@@ -22,9 +23,9 @@ class UnosBerbeController extends Controller
     public function index()
     {
         $unosi = UnosBerbe::with([
-                'planBerbe.parcela',
-                'planBerbe.sorta'
-            ])
+            'planBerbe.parcela',
+            'planBerbe.sorta',
+        ])
             ->where('user_id', auth()->id())
             ->get();
 
@@ -65,10 +66,9 @@ class UnosBerbeController extends Controller
             return back()
                 ->withInput()
                 ->withErrors([
-                    'uneta_kolicina_kg' =>
-                        'Unos prelazi planiranu količinu (' .
-                        ($plan->planirana_kolicina_kg - $do_sad_uneto) .
-                        ' kg je preostalo).'
+                    'uneta_kolicina_kg' => 'Unos prelazi planiranu količinu ('.
+                        ($plan->planirana_kolicina_kg - $do_sad_uneto).
+                        ' kg je preostalo).',
                 ]);
         }
 
@@ -85,7 +85,7 @@ class UnosBerbeController extends Controller
         // AUTOMATSKI ZAVRŠETAK PLANA
         if ($novo_ukupno >= $plan->planirana_kolicina_kg) {
             $plan->update([
-                'status' => 'zavrseno'
+                'status' => 'zavrseno',
             ]);
         }
 

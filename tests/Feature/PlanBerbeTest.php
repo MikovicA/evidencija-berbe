@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PlanBerbeTest extends TestCase
 {
@@ -36,4 +36,3 @@ class PlanBerbeTest extends TestCase
         $response->assertStatus(200);
     }
 }
-
