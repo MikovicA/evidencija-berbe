@@ -2,22 +2,17 @@
 
 namespace App\Providers;
 
-use App\Models\User;
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends ServiceProvider
+class AppServiceProvider extends ServiceProvider
 {
+    public function register(): void
+    {
+        //
+    }
+
     public function boot(): void
     {
-        // Gazda može planirati berbu
-        Gate::define('isGazda', function (User $user) {
-            return $user->role === 'gazda';
-        });
-
-        // Radnik može unositi berbu
-        Gate::define('isRadnik', function (User $user) {
-            return $user->role === 'radnik';
-        });
+        //
     }
 }
