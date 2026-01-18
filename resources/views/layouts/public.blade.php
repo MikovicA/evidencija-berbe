@@ -5,7 +5,9 @@
     <title>Evidencija berbe</title>
 
     {{-- Breeze CSS --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @if (!app()->environment('testing'))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @endif
 </head>
 <body class="bg-gray-100">
 
