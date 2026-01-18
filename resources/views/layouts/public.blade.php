@@ -5,7 +5,7 @@
     <title>Evidencija berbe</title>
 
     {{-- Breeze CSS --}}
-    @if (!app()->environment('testing'))
+    @if (!app()->runningUnitTests())
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
 </head>
