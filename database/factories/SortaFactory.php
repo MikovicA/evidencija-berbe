@@ -14,7 +14,7 @@ class SortaFactory extends Factory
         return [
             'naziv' => fake()->word(),
             'opis' => fake()->text(),
-            'hasMany' => fake()->word(),
+            
         ];
     }
 }

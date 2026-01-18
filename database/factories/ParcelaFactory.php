@@ -2,19 +2,19 @@
 
 namespace Database\Factories;
 
+use App\Models\Parcela;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ParcelaFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     */
+    protected $model = Parcela::class;
+
     public function definition(): array
     {
         return [
-            'naziv' => fake()->word(),
-            'lokacija' => fake()->word(),
-            'hasMany' => fake()->word(),
+            'naziv' => $this->faker->word(),
+            'povrsina_ha' => $this->faker->randomFloat(2, 0.5, 10),
         ];
     }
 }
+
