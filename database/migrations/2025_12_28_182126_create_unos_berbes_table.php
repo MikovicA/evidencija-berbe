@@ -16,7 +16,6 @@ return new class extends Migration
             $table->decimal('uneta_kolicina_kg', 8, 2);
             $table->foreignId('plan_berbe_id');
             $table->foreignId('user_id');
-            $table->string('belongsTo');
             $table->timestamps();
         });
     }

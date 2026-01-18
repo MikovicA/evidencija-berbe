@@ -59,7 +59,10 @@ class PlanBerbeController extends Controller
             'sorte' => Sorta::all(),
         ]);
     }
-
+    public function show(PlanBerbe $planBerbe)
+    {
+        return view('plan_berbes.show', compact('planBerbe'));
+    }
     public function update(Request $request, PlanBerbe $planBerbe)
     {
         // Ako je plan završen – ništa se ne smije mijenjati

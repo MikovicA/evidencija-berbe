@@ -34,9 +34,8 @@ class UnosBerbeController extends Controller
 
     public function create()
     {
-        // samo planovi koji su u toku
         $planovi = PlanBerbe::with(['parcela', 'sorta'])
-            ->where('status', 'u_toku')
+            ->whereIn('status', ['planirano', 'u_toku'])
             ->get();
 
         return view('unos_berbes.create', compact('planovi'));
@@ -53,7 +52,15 @@ class UnosBerbeController extends Controller
         $plan = PlanBerbe::findOrFail($validated['plan_berbe_id']);
 
         // SIGURNOSNA PROVERA STATUSA
-        if ($plan->status !== 'u_toku') {
+        // AKO JE PLAN PLANIRANO – PREBACI GA U TOKU
+        if ($plan->status === 'planirano') {
+            $plan->update([
+                'status' => 'u_toku',
+            ]);
+        }
+
+        // AKO JE ZAVRŠENO – ZABRANI UNOS
+        if ($plan->status === 'zavrseno') {
             abort(403);
         }
 
