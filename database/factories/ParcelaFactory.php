@@ -17,4 +17,3 @@ class ParcelaFactory extends Factory
         ];
     }
 }
-

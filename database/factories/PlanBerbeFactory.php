@@ -26,4 +26,3 @@ class PlanBerbeFactory extends Factory
         ];
     }
 }
-
